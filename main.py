@@ -17,12 +17,114 @@ txt1 = ('Arial Rounded MT Bold', 20, 'bold')
 
 class Quiz:
     def __init__(self):
-        pass
+        self.num_questions = 0
+        self.i = 0
+        self.correct = 0
+        self.quiz_frame = None
+
+    def start_class_quiz(self, num_questions):
+        self.num_questions = num_questions
+        self.i = 0
+        self.correct = 0
+        self.create_quiz_frame()
+
+    def create_quiz_frame(self):
+        def check_answer():
+            ans = enter_ans.get()
+            if ans == a[self.r]:
+                print(self.r)
+                self.correct += 1
+                result_label.pack(pady = 5)
+                result_label.configure(
+                    text='Correct!',
+                    text_color='#00d615'
+                    )
+            else:
+                print("no",self.r)
+                result_label.pack(pady = 5)
+                result_label.configure(
+                    text='Wrong!',
+                    text_color='#d60000'
+                    )
+            enter_ans.delete(0, ctk.END)
+            self.r = random.randrange(0,len(q))
+            self.i += 1
+            if self.i < self.num_questions:
+                question_label.configure(text=f'Question {self.i + 1}. \n {q[self.r]}')
+                print(f'Question {self.i + 1}. \n {q[self.r]}')
+            else:
+                end_quiz()
+
+        def end_quiz():
+            question_label.pack_forget()
+            enter_ans.pack_forget()
+            next_button.pack_forget()
+            restart_button.pack(pady = 5)
+            result_label.configure(
+                text=f'Quiz complete \n {self.correct}/{self.num_questions} answered correctly',
+                text_color=text,
+                font=Head
+                )
+
+        self.r = random.randint(0,143)
+
+        if self.quiz_frame:
+            self.quiz_frame.destroy()
+
+        self.quiz_frame = ctk.CTkFrame(
+            main,
+            fg_color=secondary
+            )
+        self.quiz_frame.pack()
+
+        question_label = ctk.CTkLabel(
+            self.quiz_frame,
+            text=f'Question {self.i + 1}. \n {q[self.r]}',
+            font=Head,
+            text_color=text
+            )
+        question_label.pack(pady = 5)
+        print(f'Question {self.i + 1}. \n {q[self.r]}')
+
+        enter_ans = ctk.CTkEntry(
+            self.quiz_frame,
+            placeholder_text='What is the answer?'
+            )
+        enter_ans.pack(pady = 5)
+
+        result_label = ctk.CTkLabel(
+            self.quiz_frame,
+            text='',
+            font=txt1,
+            text_color=text
+            )
+
+        next_button = ctk.CTkButton(
+            self.quiz_frame,
+            text="Next",
+            command=check_answer,
+            fg_color=primary
+            )
+        next_button.pack(pady = 5)
+
+        restart_button = ctk.CTkButton(
+            self.quiz_frame,
+            text="Restart",
+            command=self.restart_quiz,
+            fg_color=primary
+            )
+
+    def restart_quiz(self):
+        self.quiz_frame.destroy()
+        start_layout()
+
+
 
     def main_page(self):
         global main_title, tutorial_btn, review_btn, quiz_btn
 
         main.geometry('600x500+600+200')
+        
 
         main_title = ctk.CTkLabel(
             main,
@@ -67,6 +169,7 @@ class Quiz:
 
         table.pack_forget()
         review_back.pack_forget()
+
 
     def tutorial_next_cmd4(self):
         global tutorial_review_btn, tutorial_quiz_btn
@@ -117,7 +220,6 @@ class Quiz:
         tutorial_image2.pack()
         tutorial_next.pack()
         tutorial_next.configure(command=self.tutorial_next_cmd2)
-
 
     def start_tutorial(self):
         global tutorial1, tutorial2, tutorial3, tutorial4, tutorial5,  tutorial_image1, tutorial_image2, tutorial_image3, tutorial_image4, tutorial_image5, tutorial_next
@@ -177,7 +279,7 @@ class Quiz:
         )
         tutorial_next.pack(pady=20)
 
-    
+
     def start_review(self):
         global table, review_back
 
@@ -235,13 +337,21 @@ class Quiz:
 
     def start_quiz(self):
         global quiz_title, num_questions_label, num_questions_entry, start_quiz_button, quiz_back_btn
-
+        
         main.geometry('600x500+600+200')
 
         main_title.pack_forget()
         tutorial_btn.pack_forget()
         review_btn.pack_forget()
         quiz_btn.pack_forget()
+
+        def quiz_start_questions(self):
+            num_questions = int(num_questions_entry.get())
+            quiz_title.pack_forget()
+            num_questions_label.pack_forget()
+            num_questions_entry.pack_forget()
+            start_quiz_button.pack_forget()
+            self.start_class_quiz(num_questions)
 
         quiz_title = ctk.CTkLabel(
             main,
@@ -269,6 +379,7 @@ class Quiz:
             main,
             text="Start Quiz",
             fg_color=primary,
+            command=quiz_start_questions
             )
         start_quiz_button.pack(pady = 5)
 
@@ -302,6 +413,10 @@ main = ctk.CTk(
 main.title('Multiplication learner')
 main.geometry('600x700+600+200')
 main.resizable(False, False)
+with open('questions.json') as file:
+    data = json.load(file)
+q = data['ques']
+a = data['ans']
 
 run_quiz = Quiz()
 Quiz().main_page()
