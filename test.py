@@ -30,11 +30,6 @@ class Quiz:
 
     def create_quiz_frame(self):
         def check_answer():
-            try:
-                ans = int(enter_ans.get())
-            except ValueError:
-                CTkMessagebox(title="Error", message="Please enter an integar (number) answer", icon='cancel')
-                return
             ans = enter_ans.get()
             if ans == a[self.r]:
                 print(self.r)
@@ -180,7 +175,6 @@ class Quiz:
 
 
     def tutorial_next_cmd4(self):
-        
         global tutorial_review_btn, tutorial_quiz_btn
 
         main.geometry('600x700+600+200')
@@ -246,7 +240,6 @@ class Quiz:
         tutorial3 = ImageTk.PhotoImage(Image.open("p3.png"))
         tutorial4 = ImageTk.PhotoImage(Image.open("p4.png"))
         tutorial5 = ImageTk.PhotoImage(Image.open("p5.png"))
-        tutorial6 = ImageTk.PhotoImage(Image.open("p6.png"))
 
         tutorial_image1 = ctk.CTkLabel(
             main,
@@ -356,16 +349,6 @@ class Quiz:
         quiz_btn.pack_forget()
 
         def quiz_start_questions():
-            try:
-                num_questions = int(num_questions_entry.get())
-                if num_questions <= 0:
-                    CTkMessagebox(title="Error", message="Please enter a positive integar (number) of questions you would like to do", icon='cancel')
-                    return
-                else:
-                    pass
-            except ValueError:
-                CTkMessagebox(title="Error", message="Please enter an integar (number) of questions you would like to do", icon='cancel')
-                return
             num_questions = int(num_questions_entry.get())
             quiz_title.pack_forget()
             num_questions_label.pack_forget()
