@@ -36,14 +36,14 @@ class Quiz:
                 self.correct += 1
                 result_label.pack(pady = 5)
                 result_label.configure(
-                    text='Correct!',
+                    text='Correct! \n Good job',
                     text_color='#00d615'
                     )
             else:
                 print("no",self.r)
                 result_label.pack(pady = 5)
                 result_label.configure(
-                    text='Wrong!',
+                    text='Good try!',
                     text_color='#d60000'
                     )
             enter_ans.delete(0, ctk.END)
@@ -73,7 +73,7 @@ class Quiz:
 
         self.quiz_frame = ctk.CTkFrame(
             main,
-            fg_color=secondary
+            fg_color=background
             )
         self.quiz_frame.pack()
 
@@ -116,7 +116,7 @@ class Quiz:
 
     def restart_quiz(self):
         self.quiz_frame.destroy()
-        start_layout()
+        self.start_quiz()
 
 
 
@@ -337,7 +337,7 @@ class Quiz:
 
     def start_quiz(self):
         global quiz_title, num_questions_label, num_questions_entry, start_quiz_button, quiz_back_btn
-        
+
         main.geometry('600x500+600+200')
 
         main_title.pack_forget()
@@ -345,11 +345,12 @@ class Quiz:
         review_btn.pack_forget()
         quiz_btn.pack_forget()
 
-        def quiz_start_questions(self):
+        def quiz_start_questions():
             num_questions = int(num_questions_entry.get())
             quiz_title.pack_forget()
             num_questions_label.pack_forget()
             num_questions_entry.pack_forget()
+            quiz_back_btn.pack_forget()
             start_quiz_button.pack_forget()
             self.start_class_quiz(num_questions)
 
