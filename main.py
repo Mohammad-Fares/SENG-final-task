@@ -93,7 +93,7 @@ class Quiz:
             fg_color=primary,
             font=txt1,
             height=45,
-            command=self.start_quiz
+            command=self.tutorial_start_quiz
         )
         tutorial_quiz_btn.pack(pady=10)
 
@@ -234,14 +234,68 @@ class Quiz:
 
 
     def start_quiz(self):
+        global quiz_title, num_questions_label, num_questions_entry, start_quiz_button, quiz_back_btn
+
+        main.geometry('600x500+600+200')
+
         main_title.pack_forget()
         tutorial_btn.pack_forget()
         review_btn.pack_forget()
         quiz_btn.pack_forget()
 
-    
+        quiz_title = ctk.CTkLabel(
+            main,
+            text='Quiz mode',
+            text_color=text,
+            font=Head
+        )
+        quiz_title.pack(pady = 5)
 
-    
+        num_questions_label = ctk.CTkLabel(
+            main,
+            text='Choose the number of questions:',
+            text_color=text,
+            font=txt1
+            )
+        num_questions_label.pack(pady = 5)
+
+        num_questions_entry = ctk.CTkEntry(
+            main,
+            placeholder_text='Enter number of questions'
+            )
+        num_questions_entry.pack(pady = 5)
+
+        start_quiz_button = ctk.CTkButton(
+            main,
+            text="Start Quiz",
+            fg_color=primary,
+            )
+        start_quiz_button.pack(pady = 5)
+
+        quiz_back_btn = ctk.CTkButton(
+            main,
+            text="back",
+            fg_color=primary,
+            command=self.quiz_back_btn_cmd
+            )
+        quiz_back_btn.pack(pady = 5)
+
+    def quiz_back_btn_cmd(self):
+        self.main_page()
+
+        quiz_title.pack_forget()
+        num_questions_label.pack_forget() 
+        num_questions_entry.pack_forget() 
+        start_quiz_button.pack_forget() 
+        quiz_back_btn.pack_forget()
+
+    def tutorial_start_quiz(self):
+        self.start_quiz()
+
+        tutorial_image5.pack_forget()
+        tutorial_review_btn.pack_forget()
+        tutorial_quiz_btn.pack_forget()
+
 main = ctk.CTk(
     fg_color=background
 )
@@ -249,6 +303,6 @@ main.title('Multiplication learner')
 main.geometry('600x700+600+200')
 main.resizable(False, False)
 
-
+run_quiz = Quiz()
 Quiz().main_page()
 main.mainloop()
