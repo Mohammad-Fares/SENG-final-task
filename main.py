@@ -176,6 +176,7 @@ class Quiz:
 
         table.pack_forget()
         review_back_btn.pack_forget()
+        review_title.pack_forget()
 
 
     def tutorial_back_btn_cmd6(self):
@@ -412,7 +413,7 @@ class Quiz:
 
 
     def review_start(self):
-        global table, review_back_btn
+        global table, review_back_btn, review_title
 
         main_title.pack_forget()
         tutorial_btn.pack_forget()
@@ -420,6 +421,13 @@ class Quiz:
         quiz_btn.pack_forget()
 
         main.geometry('600x500+600+200')
+
+        review_title = ctk.CTkLabel(
+            main,
+            text="Multiplication tables, 1-12",
+            font=Head
+        )
+        review_title.pack()
 
         mults = [['Multiples of 1', 'Multiples of 2', 'Multiples of 3', 'Multiples of 4', 'Multiples of 5', 'Multiples of 6'],
             ['1 x 1 = 1 \n 1 x 2 = 2 \n 1 x 3 = 3 \n 1 x 4 = 4 \n 1 x 5 = 5 \n 1 x 6 = 6 \n 1 x 7 = 7 \n 1 x 8 = 8 \n 1 x 9 = 9 \n 1 x 10 = 10 \n 1 x 11 = 11 \n 1 x 12 = 12',
