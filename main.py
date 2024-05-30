@@ -127,7 +127,6 @@ class Quiz:
         self.quiz_start()
 
 
-
     def main_page(self):
         global main_title, tutorial_btn, review_btn, quiz_btn
 
@@ -179,29 +178,48 @@ class Quiz:
         review_back_btn.pack_forget()
 
 
-    def tutorial_next_cmd4(self):
+    def tutorial_back_btn_cmd6(self):
+        main.geometry('600x700+600+200')
         
+        tutorial_image6.pack_forget()
+        tutorial_review_btn.pack_forget()
+        tutorial_quiz_btn.pack_forget()
+        tutorial_next.pack_forget()
+        tutorial_back_btn.pack_forget()
+
+        tutorial_image5.pack()
+        tutorial_next.pack(pady=20)
+        tutorial_back_btn.pack()
+        tutorial_next.configure(command=self.tutorial_next_cmd5)
+        tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd5)
+
+    def tutorial_back_btn_cmd5(self):
+        main.geometry('600x700+600+200')
+        
+        tutorial_image5.pack_forget()
+        tutorial_next.pack_forget()
+        tutorial_back_btn.pack_forget()
+
+        tutorial_image4.pack()
+        tutorial_next.pack(pady=20)
+        tutorial_back_btn.pack()
+        tutorial_next.configure(command=self.tutorial_next_cmd4)
+        tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd4)
+
+    def tutorial_next_cmd5(self):
         global tutorial_review_btn, tutorial_quiz_btn
 
-        main.geometry('600x700+600+200')
+        main.geometry('600x800+600+200')
 
-        tutorial_image4.pack_forget()
+        tutorial_image5.pack_forget()
         tutorial_next.pack_forget()
-        tutorial_image5.pack()
-
-        tutorial_review_btn = ctk.CTkButton(
-            main,
-            text="Review your multiplication tables",
-            fg_color=primary,
-            font=txt1,
-            height=45,
-            command=self.tutorial_review_start
-        )
-        tutorial_review_btn.pack(pady=10)
+        tutorial_back_btn.pack_forget()
+        
+        tutorial_image6.pack()
 
         tutorial_quiz_btn = ctk.CTkButton(
             main,
-            text="Start the quiz",
+            text="Start quiz",
             fg_color=primary,
             font=txt1,
             height=45,
@@ -209,31 +227,118 @@ class Quiz:
         )
         tutorial_quiz_btn.pack(pady=10)
 
+        tutorial_review_btn = ctk.CTkButton(
+            main,
+            text="Start review",
+            fg_color=primary,
+            font=txt1,
+            height=45,
+            command=self.tutorial_review_start
+        )
+        tutorial_review_btn.pack(pady=10)
+
+        tutorial_back_btn.pack(pady=10)
+        tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd6)
+
+    def tutorial_back_btn_cmd4(self):
+        tutorial_image4.pack_forget()
+        tutorial_next.pack_forget()
+        tutorial_back_btn.pack_forget()
+
+        tutorial_image3.pack()
+        tutorial_next.pack(pady=20)
+        tutorial_back_btn.pack()
+        tutorial_next.configure(command=self.tutorial_next_cmd3)
+        tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd3)
+
+    def tutorial_next_cmd4(self):
+        tutorial_image4.pack_forget()
+        tutorial_next.pack_forget()
+        tutorial_back_btn.pack_forget()
+
+        tutorial_image5.pack()
+
+        tutorial_next.pack(pady=20)
+        tutorial_next.configure(command=self.tutorial_next_cmd5)
+
+        tutorial_back_btn.pack()
+        tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd5)
+
+    def tutorial_back_btn_cmd3(self):
+        tutorial_image3.pack_forget()
+        tutorial_next.pack_forget()
+        tutorial_back_btn.pack_forget()
+
+        tutorial_image2.pack()
+
+        tutorial_next.pack(pady=20)
+        tutorial_next.configure(command=self.tutorial_next_cmd2)
+
+        tutorial_back_btn.pack()
+        tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd2)
+
     def tutorial_next_cmd3(self):
         tutorial_image3.pack_forget()
         tutorial_next.pack_forget()
+        tutorial_back_btn.pack_forget()
+
         tutorial_image4.pack()
-        tutorial_next.pack()
+
+        tutorial_next.pack(pady=20)
         tutorial_next.configure(command=self.tutorial_next_cmd4)
+
+        tutorial_back_btn.pack()
+        tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd4)
+
+    def tutorial_back_btn_cmd2(self):
+        tutorial_image2.pack_forget()
+        tutorial_next.pack_forget()
+        tutorial_back_btn.pack_forget()
+
+        tutorial_image1.pack()
+
+        tutorial_next.pack(pady=20)
+        tutorial_next.configure(command=self.tutorial_next_cmd1)
+
+        tutorial_back_btn.pack()
+        tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd1)
 
     def tutorial_next_cmd2(self):
         tutorial_image2.pack_forget()
         tutorial_next.pack_forget()
+        tutorial_back_btn.pack_forget()
+
         tutorial_image3.pack()
-        tutorial_next.pack()
+
+        tutorial_next.pack(pady=20)
         tutorial_next.configure(command=self.tutorial_next_cmd3)
+
+        tutorial_back_btn.pack()
+        tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd3)
+
+    def tutorial_back_btn_cmd1(self):
+        tutorial_image1.pack_forget()
+        tutorial_next.pack_forget()
+        tutorial_back_btn.pack_forget()
+        self.main_page()
 
     def tutorial_next_cmd1(self):
         tutorial_image1.pack_forget()
         tutorial_next.pack_forget()
+        tutorial_back_btn.pack_forget()
+
         tutorial_image2.pack()
-        tutorial_next.pack()
+
+        tutorial_next.pack(pady=20)
         tutorial_next.configure(command=self.tutorial_next_cmd2)
 
-    def tutorial_start(self):
-        global tutorial1, tutorial2, tutorial3, tutorial4, tutorial5,  tutorial_image1, tutorial_image2, tutorial_image3, tutorial_image4, tutorial_image5, tutorial_next
+        tutorial_back_btn.pack()
+        tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd2)
 
-        main.geometry('600x650+600+200')
+    def tutorial_start(self):
+        global tutorial1, tutorial2, tutorial3, tutorial4, tutorial5,  tutorial_image1, tutorial_image2, tutorial_image3, tutorial_image4, tutorial_image5, tutorial_image6, tutorial_next, tutorial_back_btn
+
+        main.geometry('600x700+600+200')
 
 
         main_title.pack_forget()
@@ -279,6 +384,12 @@ class Quiz:
             text=""
         )
 
+        tutorial_image6 = ctk.CTkLabel(
+            main,
+            image=tutorial6,
+            text=""
+        )
+
         tutorial_next = ctk.CTkButton(
             main,
             text="next",
@@ -288,6 +399,16 @@ class Quiz:
             command=self.tutorial_next_cmd1
         )
         tutorial_next.pack(pady=20)
+
+        tutorial_back_btn = ctk.CTkButton(
+            main, 
+            text="back",
+            font=txt1,
+            text_color=background,
+            fg_color=primary,
+            command=self.tutorial_back_btn_cmd1
+        )
+        tutorial_back_btn.pack()
 
 
     def review_start(self):
@@ -340,9 +461,10 @@ class Quiz:
     
     def tutorial_review_start(self):
         self.review_start()
-        tutorial_image5.pack_forget()
+        tutorial_image6.pack_forget()
         tutorial_review_btn.pack_forget()
         tutorial_quiz_btn.pack_forget()
+        tutorial_back_btn.pack_forget()
 
 
     def quiz_start(self):
@@ -428,9 +550,10 @@ class Quiz:
     def tutorial_quiz_start(self):
         self.quiz_start()
 
-        tutorial_image5.pack_forget()
+        tutorial_image6.pack_forget()
         tutorial_review_btn.pack_forget()
         tutorial_quiz_btn.pack_forget()
+        tutorial_back_btn.pack_forget()
 
 main = ctk.CTk(
     fg_color=background
