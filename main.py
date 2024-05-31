@@ -37,7 +37,6 @@ class Quiz:
                 return
             ans = enter_ans.get()
             if ans.replace(" ", "") == a[self.r]:
-                print(self.r)
                 self.correct += 1
                 result_label.pack(pady = 5)
                 result_label.configure(
@@ -45,7 +44,6 @@ class Quiz:
                     text_color='#00d615'
                     )
             else:
-                print("no",self.r)
                 result_label.pack(pady = 5)
                 result_label.configure(
                     text='Good try!',
@@ -85,12 +83,11 @@ class Quiz:
 
         question_label = ctk.CTkLabel(
             self.quiz_frame,
-            text=f'Question {self.i + 1}. \n {q[self.r]}',
+            text=f'Question {self.i+1}. \n {q[self.r]}',
             font=Head,
             text_color=text
             )
         question_label.pack(pady = 5)
-        print(f'Question {self.i + 1}. \n {q[self.r]}')
 
         enter_ans = ctk.CTkEntry(
             self.quiz_frame,
