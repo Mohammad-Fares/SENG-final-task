@@ -36,7 +36,7 @@ class Quiz:
                 CTkMessagebox(title="Error", message="Please enter an integar (number) answer", icon='cancel')
                 return
             ans = enter_ans.get()
-            if ans == a[self.r]:
+            if ans.replace(" ", "") == a[self.r]:
                 print(self.r)
                 self.correct += 1
                 result_label.pack(pady = 5)
