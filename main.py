@@ -61,6 +61,7 @@ class Quiz:
                 end_quiz()
 
         def end_quiz():
+            main.geometry('600x150+600+200')
             question_label.pack_forget()
             enter_ans.pack_forget()
             next_button.pack_forget()
@@ -109,6 +110,7 @@ class Quiz:
         next_button = ctk.CTkButton(
             self.quiz_frame,
             text="Next",
+            font=txt1,
             command=check_answer,
             fg_color=primary
             )
@@ -130,7 +132,7 @@ class Quiz:
     def main_page(self):
         global main_title, tutorial_btn, review_btn, quiz_btn
 
-        main.geometry('600x500+600+200')
+        main.geometry('600x350+600+200')
         
 
         main_title = ctk.CTkLabel(
@@ -260,7 +262,7 @@ class Quiz:
         tutorial_image5.pack()
 
         tutorial_next.pack(pady=20)
-        tutorial_next.configure(command=self.tutorial_next_cmd5)
+        tutorial_next.configure(command=self.tutorial_next_cmd5, text="Next")
 
         tutorial_back_btn.pack()
         tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd5)
@@ -286,7 +288,7 @@ class Quiz:
         tutorial_image4.pack()
 
         tutorial_next.pack(pady=20)
-        tutorial_next.configure(command=self.tutorial_next_cmd4)
+        tutorial_next.configure(command=self.tutorial_next_cmd4, text="Next")
 
         tutorial_back_btn.pack()
         tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd4)
@@ -299,7 +301,7 @@ class Quiz:
         tutorial_image1.pack()
 
         tutorial_next.pack(pady=20)
-        tutorial_next.configure(command=self.tutorial_next_cmd1)
+        tutorial_next.configure(command=self.tutorial_next_cmd1, text="I'm ready")
 
         tutorial_back_btn.pack()
         tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd1)
@@ -312,7 +314,7 @@ class Quiz:
         tutorial_image3.pack()
 
         tutorial_next.pack(pady=20)
-        tutorial_next.configure(command=self.tutorial_next_cmd3)
+        tutorial_next.configure(command=self.tutorial_next_cmd3, text="Next")
 
         tutorial_back_btn.pack()
         tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd3)
@@ -331,7 +333,7 @@ class Quiz:
         tutorial_image2.pack()
 
         tutorial_next.pack(pady=20)
-        tutorial_next.configure(command=self.tutorial_next_cmd2)
+        tutorial_next.configure(command=self.tutorial_next_cmd2, text="Next")
 
         tutorial_back_btn.pack()
         tutorial_back_btn.configure(command=self.tutorial_back_btn_cmd2)
@@ -393,7 +395,7 @@ class Quiz:
 
         tutorial_next = ctk.CTkButton(
             main,
-            text="next",
+            text="I'm ready",
             font=txt1,
             text_color=background,
             fg_color=primary,
@@ -478,7 +480,7 @@ class Quiz:
     def quiz_start(self):
         global quiz_title, num_questions_label, num_questions_entry, quiz_start_button, quiz_back_btn
 
-        main.geometry('600x500+600+200')
+        main.geometry('600x250+600+200')
 
         main_title.pack_forget()
         tutorial_btn.pack_forget()
